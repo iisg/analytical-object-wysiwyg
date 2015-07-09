@@ -1,2 +1,1 @@
-analyticalObjectWysiwyg = angular.module('AnalyticalObjectWysiwyg',
-  ['AnalyticalObjectWysiwygTemplates'])
+analyticalObjectWysiwyg = angular.module('AnalyticalObjectWysiwyg', ['AnalyticalObjectWysiwygTemplates'])

@@ -5,6 +5,7 @@ concat = require('gulp-concat')
 uglify = require('gulp-uglify')
 del = require('del')
 html2js = require('gulp-html2js')
+ngAnnotate = require('gulp-ng-annotate')
 
 gulp.task 'lint', ->
   gulp.src 'src/**/*.coffee'
@@ -15,6 +16,7 @@ gulp.task 'lint', ->
 gulp.task 'coffee', ['lint'], ->
   gulp.src 'src/**/*.coffee'
   .pipe coffee({bare: true})
+  .pipe ngAnnotate()
   .pipe gulp.dest('.tmp/compiled')
 
 gulp.task 'scripts.normal', ['coffee'], ->

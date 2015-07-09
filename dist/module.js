@@ -2,55 +2,53 @@ var analyticalObjectWysiwyg;
 
 analyticalObjectWysiwyg = angular.module('AnalyticalObjectWysiwyg', ['AnalyticalObjectWysiwygTemplates']);
 
-analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', [
-  '$timeout', 'TaggableObjectQuillFormat', function($timeout, TaggableObjectQuillFormat) {
-    return {
-      scope: {
-        'toolbar': '@?',
-        'readOnly': '@?',
-        'ngModel': '='
-      },
-      require: 'ngModel',
-      restrict: 'E',
-      templateUrl: 'templates/analyticalObjectWysiwygEditor.html',
-      link: function($scope, element, attr, ngModel) {
-        var config, editor, isFresh;
-        TaggableObjectQuillFormat.register();
-        config = {
-          theme: 'base',
-          readOnly: $scope.readOnly || false
-        };
-        editor = new Quill(element[0].querySelector('.editor-container'), config);
-        $scope.$emit('quill.created', editor);
-        if ($scope.toolbar && $scope.toolbar === 'true') {
-          editor.addModule('toolbar', {
-            container: element[0].querySelector('.toolbar-container'),
-            formats: {
-              tooltip: {
-                object: 'object'
-              }
+analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', ["$timeout", "TaggableObjectQuillFormat", function($timeout, TaggableObjectQuillFormat) {
+  return {
+    scope: {
+      'toolbar': '@?',
+      'readOnly': '@?',
+      'ngModel': '='
+    },
+    require: 'ngModel',
+    restrict: 'E',
+    templateUrl: 'templates/analyticalObjectWysiwygEditor.html',
+    link: function($scope, element, attr, ngModel) {
+      var config, editor, isFresh;
+      TaggableObjectQuillFormat.register();
+      config = {
+        theme: 'base',
+        readOnly: $scope.readOnly || false
+      };
+      editor = new Quill(element[0].querySelector('.editor-container'), config);
+      $scope.$emit('quill.created', editor);
+      if ($scope.toolbar && $scope.toolbar === 'true') {
+        editor.addModule('toolbar', {
+          container: element[0].querySelector('.toolbar-container'),
+          formats: {
+            tooltip: {
+              object: 'object'
             }
-          });
-        }
-        isFresh = true;
-        $scope.$watch('ngModel', function(text) {
-          if ((text != null) && isFresh) {
-            editor.setHTML(text);
           }
-          return isFresh = false;
         });
-        editor.on('text-change', function() {
-          $scope.modelLength = editor.getLength();
-          return ngModel.$setViewValue(editor.getHTML());
-        });
-        element.on('destroy', function() {
-          return editor.destroy();
-        });
-        return $scope.$emit('quill.ready', editor);
       }
-    };
-  }
-]);
+      isFresh = true;
+      $scope.$watch('ngModel', function(text) {
+        if ((text != null) && isFresh) {
+          editor.setHTML(text);
+        }
+        return isFresh = false;
+      });
+      editor.on('text-change', function() {
+        $scope.modelLength = editor.getLength();
+        return ngModel.$setViewValue(editor.getHTML());
+      });
+      element.on('destroy', function() {
+        return editor.destroy();
+      });
+      return $scope.$emit('quill.ready', editor);
+    }
+  };
+}]);
 
 var TaggableObjectQuillFormat,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };

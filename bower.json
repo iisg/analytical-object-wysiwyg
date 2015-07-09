@@ -9,7 +9,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git://github.com/iisg/analytical-object-wysiwyg.git"
+    "url": "https://github.com/iisg/analytical-object-wysiwyg"
   },
   "moduleType": [
     "globals"

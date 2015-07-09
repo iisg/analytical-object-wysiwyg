@@ -72,7 +72,6 @@ class TaggableObjectQuillFormat
           @utils.hide()
 
       bindToolbar: (@toolbar) =>
-        console.log('loading toolbar!')
         @toolbar.initFormat('object', @applyFormatting)
 
       applyFormatting: (range, value) =>

@@ -23,7 +23,6 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', [
         editor = new Quill(element[0].querySelector('.editor-container'), config);
         $scope.$emit('quill.created', editor);
         if ($scope.toolbar && $scope.toolbar === 'true') {
-          console.log(element[0].querySelector('.toolbar-container'));
           editor.addModule('toolbar', {
             container: element[0].querySelector('.toolbar-container'),
             formats: {
@@ -175,7 +174,6 @@ TaggableObjectQuillFormat = (function() {
 
       Format.prototype.bindToolbar = function(toolbar) {
         this.toolbar = toolbar;
-        console.log('loading toolbar!');
         return this.toolbar.initFormat('object', this.applyFormatting);
       };
 

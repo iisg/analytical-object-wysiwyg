@@ -17,7 +17,6 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg',
       $scope.$emit('quill.created', editor)
 
       if ($scope.toolbar && $scope.toolbar == 'true')
-        console.log(element[0].querySelector('.toolbar-container'))
         editor.addModule('toolbar',
           container: element[0].querySelector('.toolbar-container')
           formats:

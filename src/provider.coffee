@@ -72,6 +72,7 @@ class TaggableObjectQuillFormat
           @utils.hide()
 
       bindToolbar: (@toolbar) =>
+        console.log('loading toolbar!')
         @toolbar.initFormat('object', @applyFormatting)
 
       applyFormatting: (range, value) =>
@@ -100,8 +101,8 @@ class TaggableObjectQuillFormat
     register: =>
       return if isRegistered
 
-      Quill.registerModule('object-format', Format)
       isRegistered = true
+      Quill.registerModule('object-format', Format)
       $rootScope.$on('quill.created', @registerFormat)
 
 analyticalObjectWysiwyg.provider('TaggableObjectQuillFormat', TaggableObjectQuillFormat)

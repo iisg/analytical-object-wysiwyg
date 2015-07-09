@@ -1,7 +1,5 @@
 analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg',
-  ['TaggableObjectQuillFormat', (TaggableObjectQuillFormat) ->
-    TaggableObjectQuillFormat.register()
-
+  ['$timeout', 'TaggableObjectQuillFormat', ($timeout, TaggableObjectQuillFormat) ->
     scope:
       'toolbar': '@?',
       'readOnly': '@?',
@@ -10,6 +8,7 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg',
     restrict: 'E'
     templateUrl: 'templates/analyticalObjectWysiwygEditor.html'
     link: ($scope, element, attr, ngModel) ->
+      TaggableObjectQuillFormat.register()
       config =
         theme: 'base'
         readOnly: $scope.readOnly || false
@@ -18,13 +17,13 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg',
       $scope.$emit('quill.created', editor)
 
       if ($scope.toolbar && $scope.toolbar == 'true')
+        console.log(element[0].querySelector('.toolbar-container'))
         editor.addModule('toolbar',
           container: element[0].querySelector('.toolbar-container')
           formats:
             tooltip:
               object: 'object'
         )
-        $scope.toolbarCreated = true
 
       # Set initial value of the editor
       isFresh = true

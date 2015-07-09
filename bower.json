@@ -5,7 +5,10 @@
     "Amadeusz Starzykiewicz <megawebmaster@gmail.com>"
   ],
   "description": "Preconfigured WYSIWYG editor using Quill for using analytical objects.",
-  "main": "src/module.coffee",
+  "main": [
+    "dist/module.js",
+    "dist/templates.min.js"
+  ],
   "private": true,
   "repository": {
     "type": "git",

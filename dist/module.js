@@ -10,7 +10,7 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', ["$timeout", "Tagga
       'ngModel': '='
     },
     require: 'ngModel',
-    restrict: 'E',
+    restrict: 'AE',
     templateUrl: 'templates/analyticalObjectWysiwygEditor.html',
     link: function($scope, element, attr, ngModel) {
       var config, editor, isFresh;

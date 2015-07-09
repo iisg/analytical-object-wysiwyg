@@ -31,7 +31,7 @@ gulp.task 'scripts.min', ['coffee'], ->
 gulp.task 'templates', ->
   gulp.src 'templates/*.html'
     .pipe html2js(
-      outputModuleName: 'analyticalObjectWysiwygTemplates'
+      outputModuleName: 'AnalyticalObjectWysiwygTemplates'
       useStrict: true
     )
     .pipe concat('templates.min.js')

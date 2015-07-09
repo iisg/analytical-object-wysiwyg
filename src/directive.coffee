@@ -4,7 +4,7 @@ analyticalObjectWysiwyg.directive 'analyticalObjectWysiwyg', ($timeout, Taggable
     'readOnly': '@?',
     'ngModel': '='
   require: 'ngModel'
-  restrict: 'E'
+  restrict: 'AE'
   templateUrl: 'templates/analyticalObjectWysiwygEditor.html'
   link: ($scope, element, attr, ngModel) ->
     TaggableObjectQuillFormat.register()

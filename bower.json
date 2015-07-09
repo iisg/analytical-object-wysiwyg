@@ -1,0 +1,48 @@
+{
+  "name": "analytical-object-wysiwyg",
+  "version": "0.1.0",
+  "authors": [
+    "Amadeusz Starzykiewicz <megawebmaster@gmail.com>"
+  ],
+  "description": "Preconfigured WYSIWYG editor using Quill for using analytical objects.",
+  "main": "src/module.coffee",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/iisg/analytical-object-wysiwyg.git"
+  },
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "quill",
+    "format",
+    "agh",
+    "objects",
+    "configurable"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "coffeelint.json",
+    "Gulpfile.coffee",
+    "Gulpfile.js",
+    "package.json"
+  ],
+  "dependencies": {
+    "quill": "megawebmaster/quill#dist",
+    "jquery": "2.1.4"
+  },
+  "override": {
+    "quill": {
+      "main": ["dist/quill.js", "dist/quill.base.css"]
+    }
+  },
+  "resolve": {
+    "quill": "dist"
+  }
+}

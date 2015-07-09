@@ -3,8 +3,7 @@ var analyticalObjectWysiwyg;
 analyticalObjectWysiwyg = angular.module('AnalyticalObjectWysiwyg', ['AnalyticalObjectWysiwygTemplates']);
 
 analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', [
-  'TaggableObjectQuillFormat', function(TaggableObjectQuillFormat) {
-    TaggableObjectQuillFormat.register();
+  '$timeout', 'TaggableObjectQuillFormat', function($timeout, TaggableObjectQuillFormat) {
     return {
       scope: {
         'toolbar': '@?',
@@ -16,6 +15,7 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', [
       templateUrl: 'templates/analyticalObjectWysiwygEditor.html',
       link: function($scope, element, attr, ngModel) {
         var config, editor, isFresh;
+        TaggableObjectQuillFormat.register();
         config = {
           theme: 'base',
           readOnly: $scope.readOnly || false
@@ -23,6 +23,7 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', [
         editor = new Quill(element[0].querySelector('.editor-container'), config);
         $scope.$emit('quill.created', editor);
         if ($scope.toolbar && $scope.toolbar === 'true') {
+          console.log(element[0].querySelector('.toolbar-container'));
           editor.addModule('toolbar', {
             container: element[0].querySelector('.toolbar-container'),
             formats: {
@@ -31,7 +32,6 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', [
               }
             }
           });
-          $scope.toolbarCreated = true;
         }
         isFresh = true;
         $scope.$watch('ngModel', function(text) {
@@ -175,6 +175,7 @@ TaggableObjectQuillFormat = (function() {
 
       Format.prototype.bindToolbar = function(toolbar) {
         this.toolbar = toolbar;
+        console.log('loading toolbar!');
         return this.toolbar.initFormat('object', this.applyFormatting);
       };
 
@@ -224,8 +225,8 @@ TaggableObjectQuillFormat = (function() {
           if (isRegistered) {
             return;
           }
-          Quill.registerModule('object-format', Format);
           isRegistered = true;
+          Quill.registerModule('object-format', Format);
           return $rootScope.$on('quill.created', _this.registerFormat);
         };
       })(this)

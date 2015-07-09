@@ -5,7 +5,14 @@ concat = require('gulp-concat')
 uglify = require('gulp-uglify')
 del = require('del')
 html2js = require('gulp-html2js')
+sass = require('gulp-sass')
 ngAnnotate = require('gulp-ng-annotate')
+
+gulp.task 'styles', ->
+  gulp.src 'sass/**/*.scss'
+  .pipe sass({errLogToConsole: true})
+  .pipe concat('styles.css')
+  .pipe gulp.dest('dist')
 
 gulp.task 'lint', ->
   gulp.src 'src/**/*.coffee'
@@ -47,6 +54,7 @@ gulp.task 'clean', ->
 
 gulp.task 'watch', ['scripts.normal', 'templates'], ->
   gulp.watch 'src/**/*.coffee', ['scripts.normal']
+  gulp.watch 'sass/**/*.scss', ['styles']
   gulp.watch 'templates/*.html', ['templates']
 
-gulp.task 'default', ['clean', 'scripts', 'templates']
+gulp.task 'default', ['clean', 'scripts', 'styles', 'templates']

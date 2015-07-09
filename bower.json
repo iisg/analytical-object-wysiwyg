@@ -1,6 +1,6 @@
 {
   "name": "analytical-object-wysiwyg",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
     "Amadeusz Starzykiewicz <megawebmaster@gmail.com>"
   ],
@@ -38,11 +38,15 @@
   ],
   "dependencies": {
     "quill": "megawebmaster/quill#dist",
-    "jquery": "2.1.4"
+    "jquery": "2.1.4",
+    "boostrap-sass": "3.3.5"
   },
   "overrides": {
     "quill": {
-      "main": ["dist/quill.js", "dist/quill.base.css"]
+      "main": [
+        "dist/quill.js",
+        "dist/quill.base.css"
+      ]
     }
   },
   "resolve": {

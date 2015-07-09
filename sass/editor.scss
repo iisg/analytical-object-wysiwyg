@@ -1,0 +1,54 @@
+@import '../bower_components/boostrap-sass/assets/stylesheets/bootstrap/variables';
+
+.editor {
+  margin-top: $padding-base-vertical;
+  border: 1px solid $input-border;
+  border-radius: $input-border-radius;
+
+  .toolbar {
+    border-bottom: 1px solid $input-border;
+    box-sizing: border-box;
+    padding: $padding-base-vertical;
+  }
+  .ql-container {
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    overflow: visible;
+  }
+  .ql-editor {
+    @extend .body;
+
+    span.object {
+      background-color: $badge-bg;
+    }
+  }
+  .ql-format-group {
+    margin-right: $padding-large-horizontal;
+  }
+  .ql-format-button {
+    padding: 0 $padding-small-vertical;
+    cursor: pointer;
+
+    &:hover, &.ql-active {
+      color: $link-hover-color;
+    }
+  }
+  .ql-tooltip {
+    padding: $padding-base-vertical $padding-base-horizontal;
+    border: 1px solid $panel-default-border;
+    border-radius: $panel-border-radius;
+  }
+}
+.body {
+  div {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  ul, ol {
+    margin-bottom: 10px;
+    margin-top: 0;
+  }
+}

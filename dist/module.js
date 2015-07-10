@@ -7,7 +7,8 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', ["$timeout", "Tagga
     scope: {
       'toolbar': '@?',
       'readOnly': '@?',
-      'ngModel': '='
+      'ngModel': '=',
+      'context': '='
     },
     require: 'ngModel',
     restrict: 'AE',
@@ -20,6 +21,7 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', ["$timeout", "Tagga
         readOnly: $scope.readOnly || false
       };
       editor = new Quill(element[0].querySelector('.editor-container'), config);
+      editor.context = $scope.context;
       $scope.$emit('quill.created', editor);
       if ($scope.toolbar && $scope.toolbar === 'true') {
         editor.addModule('toolbar', {
@@ -184,7 +186,7 @@ TaggableObjectQuillFormat = (function() {
           return this.quill.formatText(range, 'object', null, 'user');
         } else if (!range.isCollapsed()) {
           text = this.quill.getText(range.start, range.end);
-          return $q.when(resolved['search'](text)).then((function(_this) {
+          return $q.when(resolved['search'](text, this.quill.context)).then((function(_this) {
             return function(item) {
               if (!range) {
                 return;

@@ -3,6 +3,7 @@ analyticalObjectWysiwyg.directive 'analyticalObjectWysiwyg', ($timeout, Taggable
     'toolbar': '@?',
     'readOnly': '@?',
     'ngModel': '='
+    'context': '='
   require: 'ngModel'
   restrict: 'AE'
   templateUrl: 'templates/analyticalObjectWysiwygEditor.html'
@@ -13,6 +14,8 @@ analyticalObjectWysiwyg.directive 'analyticalObjectWysiwyg', ($timeout, Taggable
       readOnly: $scope.readOnly || false
 
     editor = new Quill(element[0].querySelector('.editor-container'), config)
+    editor.context = $scope.context
+
     $scope.$emit('quill.created', editor)
 
     if ($scope.toolbar && $scope.toolbar == 'true')

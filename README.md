@@ -16,17 +16,17 @@ bower install iisg/analytical-object-wysiwyg --save
 
     app.config((TaggableObjectQuillFormatProvider) ->
         TaggableObjectQuillFormatProvider.on('search', ->
-            (text) ->
+            (text, context) ->
                 id: 0
                 label: text
         )
     )
-    
+
 You can use promises as well:
 
     app.config((TaggableObjectQuillFormatProvider) ->
         TaggableObjectQuillFormatProvider.on('search', ['$q', ($q) ->
-            (text) ->
+            (text, context) ->
                 promise = $q.defer()
                 onMyEvent.then((object) ->
                     promise.resolve(object)
@@ -49,11 +49,14 @@ You can add your own services for these events:
 
 ### Available directive options
 
+* `ng-model` (REQUIRED) - your model to handle data
 * `toolbar` - set to true to load toolbar
     * `<analytical-object-wysiwyg ng-model="document" toolbar="true">`
 * `read-only` - set to true to force editor to be read-only
     * `<analytical-object-wysiwyg ng-model="document" read-only="true">`
-* `ng-model` (REQUIRED) - your model to handle data
+* `context` - set the object that will be passed to event handlers
+    * `<analytical-object-wysiwyg ng-model="document.content" context="document">`
+
 
 ## Templating
 

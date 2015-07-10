@@ -81,7 +81,7 @@ class TaggableObjectQuillFormat
           @quill.formatText(range, 'object', null, 'user')
         else if !range.isCollapsed()
           text = @quill.getText(range.start, range.end)
-          $q.when(resolved['search'](text)).then((item) =>
+          $q.when(resolved['search'](text, @quill.context)).then((item) =>
             return unless range
             @quill.formatText(range, 'object', item, 'user')
           )

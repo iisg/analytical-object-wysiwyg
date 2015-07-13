@@ -40,7 +40,7 @@
   "dependencies": {
     "quill": "megawebmaster/quill#dist",
     "jquery": "2.1.4",
-    "boostrap-sass": "3.3.5"
+    "bootstrap-sass": "3.3.5"
   },
   "overrides": {
     "quill": {

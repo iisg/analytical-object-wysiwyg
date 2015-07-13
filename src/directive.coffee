@@ -26,8 +26,9 @@ analyticalObjectWysiwyg.directive 'analyticalObjectWysiwyg', ($timeout, Taggable
     # Set initial value of the editor
     isFresh = true
     $scope.$watch('ngModel', (text) ->
-      editor.setHTML(text) if text? && isFresh
-      isFresh = false
+      if text? && isFresh
+        editor.setHTML(text)
+        isFresh = false
     )
 
     # Watch editor changes to update model accordingly

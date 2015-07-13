@@ -35,8 +35,8 @@ analyticalObjectWysiwyg.directive('analyticalObjectWysiwyg', ["$timeout", "Tagga
       $scope.$watch('ngModel', function(text) {
         if ((text != null) && isFresh) {
           editor.setHTML(text);
+          return isFresh = false;
         }
-        return isFresh = false;
       });
       editor.on('text-change', function() {
         $scope.modelLength = editor.getLength();
@@ -188,6 +188,9 @@ TaggableObjectQuillFormat = (function() {
             return function(item) {
               if (!range) {
                 return;
+              }
+              if (range.end === _this.quill.getLength() - 1) {
+                _this.quill.insertText(range.end, ' ');
               }
               return _this.quill.formatText(range, 'object', item, 'user');
             };

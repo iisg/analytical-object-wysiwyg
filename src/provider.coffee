@@ -83,6 +83,7 @@ class TaggableObjectQuillFormat
           text = @quill.getText(range.start, range.end)
           $q.when(resolved['search'](text)).then((item) =>
             return unless range
+            @quill.insertText(range.end, ' ') if range.end == @quill.getLength() - 1
             @quill.formatText(range, 'object', item, 'user')
           )
 

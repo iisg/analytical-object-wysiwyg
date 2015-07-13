@@ -1,6 +1,6 @@
 {
   "name": "quill-object-format",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Configurable format for Quill. Adds ability to format text as \"object\" where you define what an object is.",
   "license": "MIT",
   "repository": {},
